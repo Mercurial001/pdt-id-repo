@@ -1,0 +1,13 @@
+<div id="create-individual-htmx-sitio-div">
+    {% if sitios_len > 0 %}
+        <select name="htmx-sitio" class="create-individual-form-field-input">
+            {% for sitio in sitios %}
+            <option value="{{ sitio.name }}">
+                {{ sitio.name }}
+            </option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <input type="text" name="htmx-sitio" placeholder="Sitio" class="create-individual-form-field-input">
+    {% endif %}
+</div>

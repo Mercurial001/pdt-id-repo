@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+<!--    <title>Title</title>-->
+<!--    <link rel="stylesheet" href="{{root_directory}}{% static 'base.css' %}">-->
+<!--    <link rel="stylesheet" href="{{root_directory}}{% static 'create-individual.css' %}">-->
+<!--    <link rel="stylesheet" href="{{root_directory}}{% static 'individual.css' %}">-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/impact" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <style>
+        .individual-id-information-container-div{
+            width: 43%;
+            background: -webkit-linear-gradient(135deg, rgb(230, 230, 230), rgb(230, 230, 230), rgb(50, 150, 200));
+
+            height: 210px;
+            border-radius: 10px;
+            font-family: 'Montserrat';
+            margin: 10px;
+        }
+
+        .individual-pages-pdt-logo-img{
+            height: 40px;
+            margin-left: 10px;
+            margin-top: 5px;
+        }
+
+        .individual-id-detail-information-container-div{
+            margin: 10px;
+        }
+
+        .individual-image-container-div{
+            float: left;
+            margin-right: 10px;
+        }
+
+        .individual-id-logo-name-span{
+            float: right;
+            margin-top: 7px;
+            margin-right: 10px;
+            font-family: 'Anton';
+            letter-spacing: 1px;
+            font-size:20px;
+            color: rgb(240, 240, 240);
+            text-shadow: 0px 2px -0px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+        }
+
+        .individual-img{
+            height: 140px;
+            width: 140px;
+            border-radius: 10px;
+        }
+
+        .individual-id-header{
+            background: -webkit-linear-gradient(left, rgb(220, 220, 220), rgb(90, 150, 200));
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        .individual-id-textual-information-container-div{
+            text-transform: uppercase;
+        }
+
+        .individual-id-individual-information-instance-container-div{
+            margin: 2px;
+        }
+
+        .individual-id-text-info-div{
+            font-size: 9px;
+            margin: 2px;
+        }
+
+        .individual-id-individual-information-label-div{
+            font-size:7px;
+        }
+
+        .individual-id-individual-information-div{
+            font-weight: 800;
+        }
+
+        .individual-id-back-part-qr-code-container-div{
+            float: left;
+        }
+
+        .individual-qr-code-img{
+            height: 180px;
+            margin: 12px;
+            border-radius: 5px;
+        }
+
+        .individual-id-textual-information-container-div-back-part{
+            text-transform: uppercase;
+        }
+
+        .individual-id-text-info-div-back-part{
+            padding-top: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    {% for individual in individuals %}
+        <div class="individual-id-information-container-div">
+            <header class="individual-id-header">
+                <img class="individual-pages-pdt-logo-img" src="{{root_directory}}{% static 'pdt_logo/pdt-logo.png' %}">
+                <span class="individual-id-logo-name-span">
+                    PALOMPON DEVELOPMENT TEAM
+                </span>
+            </header>
+            <div class="individual-id-detail-information-container-div">
+                <div class="individual-image-container-div">
+                    {% if individual.image %}
+                        <img class="individual-img" src="{{root_directory}}{{ individual.image.url }}">
+                    {% else %}
+                        No image
+                    {% endif %}
+                </div>
+                <div class="individual-id-textual-information-container-div">
+                    <div class="individual-id-text-info-div">
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                                Surname/Apelyido
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.last_name }}
+                            </div>
+
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                                First Name/Ngalan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.first_name }}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Middle Name/Gitnang Ngalan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.middle_name }}
+                                {% if individual.suffix is not None %}
+                                    {{ individual.suffix }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Address/Tirahan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.brgy }}
+                                {% if individual.sitio is not None %}
+                                    , {{ individual.sitio }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Date of Birth/Petsa ng Kapanganakan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.birthday }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="individual-id-information-container-div">
+            <div class="individual-id-back-part-qr-code-container-div">
+                <img class="individual-qr-code-img" src="{{root_directory}}{% static 'qr-codes/' %}QR-Code-{{individual.first_name}}-{{individual.middle_name}}-{{individual.last_name}}-{{individual.brgy}}-{{individual.id}}.png" alt="">
+            </div>
+            <div class="individual-id-textual-information-container-div-back-part">
+                <div class="individual-id-text-info-div-back-part">
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                            Gender/Kasarian
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.gender }}
+                        </div>
+
+                    </div>
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                            Civil Status/Kalagayang Sibil
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.civil_status }}
+                        </div>
+                    </div>
+
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                           Religion/Relihiyon
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.religion }}
+                        </div>
+                    </div>
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                           Occupation/Trabaho
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.occupation }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>

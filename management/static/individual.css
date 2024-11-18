@@ -1,0 +1,88 @@
+.individual-id-information-container-div{
+    width: 22%;
+    /*background: linear-gradient(to bottom right, rgb(230, 230, 230),rgb(230, 230, 230), rgb(50, 150, 200));*/
+    background: -webkit-linear-gradient(135deg, rgb(230, 230, 230), rgb(230, 230, 230), rgb(50, 150, 200));
+    height: 210px;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    margin: 10px;
+}
+
+.individual-pages-pdt-logo-img{
+    height: 40px;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+.individual-id-detail-information-container-div{
+    margin: 10px;
+}
+
+.individual-image-container-div{
+    float: left;
+    margin-right: 10px;
+}
+
+.individual-id-logo-name-span{
+    float: right;
+    margin-top: 13px;
+    margin-right: 10px;
+    font-family: 'Anton';
+    letter-spacing: 1px;
+    font-size:20px;
+    color: rgb(240, 240, 240);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+}
+
+.individual-img{
+    height: 140px;
+    width: 140px;
+    border-radius: 10px;
+}
+
+.individual-id-header{
+    background: linear-gradient(to right, rgb(220, 220, 220), rgb(90, 150, 200));
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.individual-id-textual-information-container-div{
+    text-transform: uppercase;
+}
+
+.individual-id-individual-information-instance-container-div{
+    margin: 5px;
+}
+
+.individual-id-text-info-div{
+    font-size: 12px;
+    margin: 10px;
+}
+
+.individual-id-individual-information-label-div{
+    font-size:7px;
+}
+
+.individual-id-individual-information-div{
+    font-weight: 800;
+}
+
+.individual-id-back-part-qr-code-container-div{
+    float: left;
+}
+
+.individual-qr-code-img{
+    height: 180px;
+    margin: 12px;
+    border-radius: 5px;
+}
+
+.individual-id-textual-information-container-div-back-part{
+    text-transform: uppercase;
+}
+
+.individual-id-text-info-div-back-part{
+    padding-top: 20px;
+    font-size: 12px;
+}

@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% for individual in individuals %}
+        <div class="individual-id-information-container-div">
+            <header class="individual-id-header">
+                <img class="individual-pages-pdt-logo-img" src="{% static 'pdt_logo/pdt-logo.png' %}">
+                <span class="individual-id-logo-name-span">
+                    PALOMPON DEVELOPMENT TEAM
+                </span>
+            </header>
+            <div class="individual-id-detail-information-container-div">
+                <div class="individual-image-container-div">
+                    {% if individual.image %}
+                        <img class="individual-img" src="{{ individual.image.url }}">
+                    {% else %}
+                        No image
+                    {% endif %}
+                </div>
+                <div class="individual-id-textual-information-container-div">
+                    <div class="individual-id-text-info-div">
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                                Surname/Apelyido
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.last_name }}
+                            </div>
+
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                                First Name/Ngalan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.first_name }}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Middle Name/Gitnang Ngalan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.middle_name }}
+                                {% if individual.suffix is not None %}
+                                    {{ individual.suffix }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Address/Tirahan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.brgy }}
+                                {% if individual.sitio is not None %}
+                                    , {{ individual.sitio }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="individual-id-individual-information-instance-container-div">
+                            <div class="individual-id-individual-information-label-div">
+                               Date of Birth/Petsa ng Kapanganakan
+                            </div>
+                            <div class="individual-id-individual-information-div">
+                                {{ individual.birthday }}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="individual-id-information-container-div">
+            <div class="individual-id-back-part-qr-code-container-div">
+                <img class="individual-qr-code-img" src="{% static 'qr-codes/' %}QR-Code-{{individual.first_name}}-{{individual.middle_name}}-{{individual.last_name}}-{{individual.brgy}}-{{individual.id}}.png" alt="">
+            </div>
+            <div class="individual-id-textual-information-container-div-back-part">
+                <div class="individual-id-text-info-div-back-part">
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                            Gender/Kasarian
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.gender }}
+                        </div>
+
+                    </div>
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                            Civil Status/Kalagayang Sibil
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.civil_status }}
+                        </div>
+                    </div>
+
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                           Religion/Relihiyon
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.religion }}
+                        </div>
+                    </div>
+                    <div class="individual-id-individual-information-instance-container-div">
+                        <div class="individual-id-individual-information-label-div">
+                           Occupation/Trabaho
+                        </div>
+                        <div class="individual-id-individual-information-div">
+                            {{ individual.occupation }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Repo</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'create-individual.css' %}">
+    <link rel="stylesheet" href="{% static 'individual.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <script src="{% static 'htmx.js' %}"></script>
+</head>
+<body>
+    Cloud
+    {% block content %}
+
+    {% endblock %}
+</body>
+</html>

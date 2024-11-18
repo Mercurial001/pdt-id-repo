@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class="create-individual-form-container-div">
+    <form method='POST' class="create-individual-form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="create-individual-input-container-div">
+            <div class="">
+              <input class="create-individual-form-field-input"
+                     type="text"
+                     name="first-name"
+                     required placeholder="First Name"
+              >
+            </div>
+            <div>
+              <input type="text"
+                     name="middle-name"
+                     class="create-individual-form-field-input"
+                     placeholder="Middle Name"
+              >
+            </div>
+            <div>
+              <input type="text"
+                     name="last-name"
+                     class="create-individual-form-field-input"
+                     required placeholder="Last Name"
+              >
+            </div>
+            <div>
+              <input type="text"
+                     name="suffix"
+                     class="create-individual-form-field-input"
+                     placeholder="Suffix"
+              >
+            </div>
+            <div>
+              <input type="date"
+                     name="birthday"
+                     class="create-individual-form-field-input"
+                     required
+              >
+            </div>
+            <div>
+              {% if genders_len > 0 %}
+                  <select name="gender" class="create-individual-form-field-input">
+                      <option value="" selected disabled>Select Gender</option>
+                      {% for gender in genders %}
+                        <option value="{{ gender.name }}">
+                            {{ gender.name }}
+                        </option>
+                      {% endfor %}
+                  </select>
+              {% else %}
+                  <input type="text"
+                         name="gender"
+                         class="create-individual-form-field-input"
+                         placeholder="Gender"
+                         required
+                  >
+              {% endif %}
+            </div>
+            <div>
+                {% if civil_statuses_len > 0 %}
+                    <select name="civil-status" class="create-individual-form-field-input">
+                        <option value="" disabled selected>Civil Status</option>
+                        {% for civil_status in civil_statuses %}
+                            <option value="{{ civil_status.name }}">
+                                {{ civil_status.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="text"
+                           name="civil-status"
+                           class="create-individual-form-field-input"
+                           placeholder="Civil Status"
+                    >
+                {% endif %}
+            </div>
+            <div>
+              <select name="brgy"
+                      class="create-individual-form-field-input"
+                      hx-post="{% url 'sitio-htmx' %}"
+                      hx-trigger="change"
+                      hx-swap="outerHTML"
+                      hx-target="#create-individual-htmx-sitio-div"
+                      hx-select="#create-individual-htmx-sitio-div"
+
+              >
+                  <option value="" selected disabled>
+                      Select Barangay
+                  </option>
+                  {% for brgy in barangays %}
+                      <option value="{{ brgy.id }}">
+                          {{ brgy.name }}
+                      </option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div id="create-individual-htmx-sitio-div">
+                <!-- htmx sitio -->
+            </div>
+
+            <div>
+                {% if religions_len > 0 %}
+                    <select name="religion" class="create-individual-form-field-input">
+                        <option value="" selected disabled>Select Religion</option>
+                        {% for religion in religions %}
+                            <option value="{{ religion.name }}">
+                                {{ religion.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="text"
+                           name="religion"
+                           class="create-individual-form-field-input"
+                           placeholder="Religion"
+                    >
+                {% endif %}
+            </div>
+            <div>
+                {% if occupations_len > 0 %}
+                    <select name="occupation" class="create-individual-form-field-input">
+                        <option value="" disabled selected>Occupation</option>
+                        {% for occupation in occupations %}
+                            <option value="{{ occupation.name }}">
+                                {{ occupation.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <input type="text"
+                           name="occupation"
+                           class="create-individual-form-field-input"
+                           placeholder="Occupation"
+                    >
+                {% endif %}
+            </div>
+            <div>
+                {% if educational_lvl > 0 %}
+                    <select name="educational-lvl" class="create-individual-form-field-input">
+                        <option value="" disabled selected>Educational Attainment</option>
+                        {% for lvl in educational_lvl %}
+                            <option value="{{ lvl.name }}">
+                                {{ lvl.name }}
+                            </option>
+                        {% endfor %}
+
+                    </select>
+                {% else %}
+                    <input type="text"
+                           name="educational-lvl"
+                           class="create-individual-form-field-input"
+                           placeholder="Educational Attainment"
+                    >
+                {% endif %}
+            </div>
+            <div>
+                <input type="file"
+                       name="individual-img"
+                       accept="image/jpeg, image/png"
+                       class="create-individual-form-field-input"
+                >
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="create-individual-create-btn">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
